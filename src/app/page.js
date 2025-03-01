@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function PokemonHome() {
   const [pokemons, setPokemons] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchData, setSearchData] = useState("");
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
@@ -35,11 +35,11 @@ export default function PokemonHome() {
         setPokemons(pokemonWithImages);
       })
       .catch((error) => {
-        console.error("Error fetching Pokémon:", error)
+        console.error("Error fetching Pokemon:", error)
       });
   }, []);
 
-  const filterPokemeons = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filterPokemeons = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(searchData.toLowerCase()));
   
   return (
     <div className="min-h-screen p-6">
@@ -48,8 +48,8 @@ export default function PokemonHome() {
         <input
           type="text"
           placeholder="Search Pokemon"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchData}
+          onChange={(e) => setSearchData(e.target.value)}
           className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>

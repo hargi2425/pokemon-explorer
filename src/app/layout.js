@@ -2,7 +2,7 @@ import "../app/globals.css"
 
 export const metadata = {
   title: "Pokemon Explorer",
-  description: "Explore Pokémon with Next.js App Router",
+  description: "Explore Pokemon",
 };
 
 export default function RootLayout({ children }) {

@@ -4,12 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
-async function getPokemonDetails(id) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  if (!res.ok) return null;
-  return res.json();
-}
-
 export default function PokemonDetail() {
   const params = useParams();
   const [pokemon, setPokemon] = useState(null);
@@ -22,7 +16,9 @@ export default function PokemonDetail() {
       .then((data) => {
         setPokemon(data);
       })
-      .catch((error) => console.error("Error fetching Pokemon details:", error));
+      .catch((error) => {
+        console.error("Error fetching Pokemon details:", error)
+      });
   }, [params]);
 
   if (!params || !params.id) {
@@ -66,7 +62,6 @@ export default function PokemonDetail() {
           </div>
         </div>
 
-        {/* Pokémon Types */}
         <div className="mt-6">
           <h2 className="text-2xl font-bold">Types</h2>
           <div className="flex gap-2 mt-2">
@@ -81,7 +76,6 @@ export default function PokemonDetail() {
           </div>
         </div>
 
-        {/* Abilities */}
         <div className="mt-6">
           <h2 className="text-2xl font-bold">Abilities</h2>
           <ul className="list-disc pl-5 mt-2">
@@ -91,7 +85,6 @@ export default function PokemonDetail() {
           </ul>
         </div>
 
-        {/* Base Stats */}
         <div className="mt-6">
           <h2 className="text-2xl font-bold">Base Stats</h2>
           <div className="space-y-2 mt-2">
